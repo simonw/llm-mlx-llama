@@ -1,0 +1,29 @@
+[project]
+name = "llm-mlx-llama"
+version = "0.1"
+description = "Using MLX on macOS to run Llama 2"
+readme = "README.md"
+authors = [{name = "Simon Willison"}]
+license = {text = "MIT"}
+classifiers = [
+    "License :: OSI Approved :: MIT License"
+]
+dependencies = [
+    "llm",
+    "mlx",
+    "sentencepiece",
+    "torch",
+    "numpy"
+]
+
+[project.urls]
+Homepage = "https://github.com/simonw/llm-mlx-llama"
+Changelog = "https://github.com/simonw/llm-mlx-llama/releases"
+Issues = "https://github.com/simonw/llm-mlx-llama/issues"
+CI = "https://github.com/simonw/llm-mlx-llama/actions"
+
+[project.entry-points.llm]
+mlx_llama = "llm_mlx_llama"
+
+[project.optional-dependencies]
+test = ["pytest"]

@@ -11,7 +11,7 @@ Using MLX on macOS to run Llama 2. **Highly experimental**.
 
 Install this plugin in the same environment as [LLM](https://llm.datasette.io/).
 ```bash
-llm install llm-mlx-llama
+llm install https://github.com/simonw/llm-mlx-llama/archive/refs/heads/main.zip
 ```
 ## Usage
 

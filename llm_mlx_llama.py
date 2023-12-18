@@ -264,16 +264,13 @@ def toc(msg, start):
 def generate(tokenizer, model, prompt, temperature, num_tokens, write_every=1):
     x = mx.array([[tokenizer.bos_id()] + tokenizer.encode(prompt)])
     skip = 0
-    prompt_processing = None
     tokens = []
-    start = tic()
     for token in model.generate(x, temperature):
         tokens.append(token)
 
         if len(tokens) == 1:
             # Actually perform the computation to measure the prompt processing time
             mx.eval(token)
-            prompt_processing = toc("Prompt processing", start)
 
         if len(tokens) >= num_tokens:
             break
@@ -282,13 +279,11 @@ def generate(tokenizer, model, prompt, temperature, num_tokens, write_every=1):
             # It is perfectly ok to eval things we have already eval-ed.
             mx.eval(tokens)
             s = tokenizer.decode([t.item() for t in tokens])
-            print(s[skip:], end="", flush=True)
+            yield s[skip:]
             skip = len(s)
 
     mx.eval(tokens)
-    full_gen = toc("Full generation", start)
     s = tokenizer.decode([t.item() for t in tokens])
-
     yield s[skip:]
 
 

@@ -15,15 +15,20 @@ llm install https://github.com/simonw/llm-mlx-llama/archive/refs/heads/main.zip
 ```
 ## Usage
 
-Download `Llama-2-7b-chat.npz` and `tokenizer.model` from [mlx-llama/Llama-2-7b-chat-mlx](https://huggingface.co/mlx-llama/Llama-2-7b-chat-mlx/tree/main).
+Download [mlx-llama/Llama-2-7b-chat-mlx](https://huggingface.co/mlx-llama/Llama-2-7b-chat-mlx/tree/main) to `Llama-2-7b-chat-mlx`.
 
-Pass paths to those files as options when you run a prompt:
+``` 
+huggingface-cli download --local-dir Llama-2-7b-chat-mlx mlx-llama/Llama-2-7b-chat-mlx
+
+```
+
+Pass paths to target directory and `tokenizer.model` as options when you run a prompt:
 
 ```bash
 llm -m mlx-llama \
   'five great reasons to get a pet pelican:' \
-  -o model Llama-2-7b-chat.npz \
-  -o tokenizer tokenizer.model
+  -o model Llama-2-7b-chat-mlx \
+  -o tokenizer Llama-2-7b-chat-mlx/tokenizer.model
 ```
 Chat mode and continuing a conversation are not yet supported.
 
